@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(bot)
 
-set(opencv3_DIR /home/nvidia/opencv/share/OpenCV)
-
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++14)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,7 +10,6 @@ set(opencv3_DIR /home/nvidia/opencv/share/OpenCV)
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
-  opencv3
   roscpp
   usb_cam
   web_video_server
@@ -110,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES bot
-#  CATKIN_DEPENDS cv_bridge image_transport opencv3 roscpp usb_cam web_video_server
+#  CATKIN_DEPENDS cv_bridge image_transport roscpp usb_cam web_video_server
 #  DEPENDS system_lib
 )
 

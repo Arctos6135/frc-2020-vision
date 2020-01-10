@@ -1,7 +1,0 @@
-usb_cam
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/cmake.lock /home/nvidia/Arctos/frc-2020-vision/devel/./cmake.lock
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/share/usb_cam/cmake/usb_camConfig-version.cmake /home/nvidia/Arctos/frc-2020-vision/devel/share/usb_cam/cmake/usb_camConfig-version.cmake
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/share/usb_cam/cmake/usb_camConfig.cmake /home/nvidia/Arctos/frc-2020-vision/devel/share/usb_cam/cmake/usb_camConfig.cmake
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/lib/libusb_cam.so /home/nvidia/Arctos/frc-2020-vision/devel/lib/libusb_cam.so
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/lib/usb_cam/usb_cam_node /home/nvidia/Arctos/frc-2020-vision/devel/lib/usb_cam/usb_cam_node
-/home/nvidia/Arctos/frc-2020-vision/devel/.private/usb_cam/lib/pkgconfig/usb_cam.pc /home/nvidia/Arctos/frc-2020-vision/devel/lib/pkgconfig/usb_cam.pc

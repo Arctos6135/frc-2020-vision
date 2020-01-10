@@ -15,3 +15,5 @@ lib/
 # Catkin custom files
 CATKIN_IGNORE
 
+.catkin_tools/
+

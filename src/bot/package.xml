@@ -44,19 +44,16 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>cv_bridge</build_depend>
   <build_depend>image_transport</build_depend>
-  <build_depend>opencv3</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>usb_cam</build_depend>
   <build_depend>web_video_server</build_depend>
   <build_export_depend>cv_bridge</build_export_depend>
   <build_export_depend>image_transport</build_export_depend>
-  <build_export_depend>opencv3</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>usb_cam</build_export_depend>
   <build_export_depend>web_video_server</build_export_depend>
   <exec_depend>cv_bridge</exec_depend>
   <exec_depend>image_transport</exec_depend>
-  <exec_depend>opencv3</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>usb_cam</exec_depend>
   <exec_depend>web_video_server</exec_depend>
