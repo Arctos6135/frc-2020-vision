@@ -1,0 +1,17 @@
+devel/
+logs/
+build/
+bin/
+lib/
+
+*~
+
+# Emacs
+.#*
+
+# Vim
+*.swp
+
+# Catkin custom files
+CATKIN_IGNORE
+

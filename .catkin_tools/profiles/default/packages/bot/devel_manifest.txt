@@ -1,0 +1,5 @@
+bot
+/home/nvidia/Arctos/frc-2020-vision/devel/.private/bot/cmake.lock /home/nvidia/Arctos/frc-2020-vision/devel/./cmake.lock
+/home/nvidia/Arctos/frc-2020-vision/devel/.private/bot/share/bot/cmake/botConfig-version.cmake /home/nvidia/Arctos/frc-2020-vision/devel/share/bot/cmake/botConfig-version.cmake
+/home/nvidia/Arctos/frc-2020-vision/devel/.private/bot/share/bot/cmake/botConfig.cmake /home/nvidia/Arctos/frc-2020-vision/devel/share/bot/cmake/botConfig.cmake
+/home/nvidia/Arctos/frc-2020-vision/devel/.private/bot/lib/pkgconfig/bot.pc /home/nvidia/Arctos/frc-2020-vision/devel/lib/pkgconfig/bot.pc
