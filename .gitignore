@@ -17,3 +17,5 @@ CATKIN_IGNORE
 
 .catkin_tools/
 
+src/networktables/
+
