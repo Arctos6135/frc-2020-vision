@@ -1,0 +1,3 @@
+src/usb_cam/* linguist-vendored
+src/networktables/* llinguist-vendored
+*.launch linguist-language=XML

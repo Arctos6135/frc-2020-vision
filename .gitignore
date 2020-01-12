@@ -19,3 +19,4 @@ CATKIN_IGNORE
 
 src/networktables/
 
+setup.*
