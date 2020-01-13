@@ -6,12 +6,20 @@ Official repository for Team Arctos 6135's vision code in FRC 2020 Infinite Rech
 
 ## Building
 
-This project is powered by ROS. First install ROS from http://wiki.ros.org/ROS/Installation.
+### Installing Dependencies
+
 This project natively uses ROS Kinetic on Ubuntu Xenial, but any distribution should work.
+This project is powered by ROS. First install ROS from http://wiki.ros.org/ROS/Installation.
 
 1. Source the setup file from `/opt/ros/<distro>/setup.bash`.
-2. Run `wstool update -t src` to clone the necessary packages.
-3. Run `catkin build` to build the project.
+2. Run `wstool update -t src` to clone the necessary packages from source.
+3. Run `rosdep install --from-paths src -i` to install all package dependencies.
+
+To install the dependencies for the Python tests, run `pip install -r python-tests/requirements.txt`.
+
+### Building the Project
+
+1. Run `catkin build` to build the project.
 
 ## Running
 
@@ -19,6 +27,8 @@ Again, you must have ROS installed to run this project.
 
 1. Source the local setup file from `devel/setup.bash`.
 2. Run `roslaunch bot bot.launch` to launch the entire robot.
+
+To run the Python tests, first `cd python-tests`, and then run `python3 vision_test.py`.
 
 ## Thank you to our generous sponsors:
 ### Platinum
