@@ -9,6 +9,9 @@ lib/
 
 *~
 
+# Test images
+*.png
+
 # Python
 __pycache__
 
