@@ -50,7 +50,8 @@ def filter_targets(targets):
         return None
     valid_targets = []
     for contour, rect in targets:
-        # RotatedRect format: 
+        # RotatedRect format: (center, size, angle)
+        # Can be found (kind of) here: https://docs.opencv.org/2.4/modules/core/doc/old_basic_structures.html?highlight=box2d#cvbox2d
         rect_area = rect[1][0] * rect[1][1]
         if rect_area == 0:
             continue
