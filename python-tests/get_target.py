@@ -69,6 +69,49 @@ def filter_targets(targets):
     return target[0] if target else None
 
 
+def simplify_contour(contour, n, iteration_count: int = 20):
+    """
+    Uses cv2.approxPolyDP() to approximate a contour to a polygon.
+
+    The result will always have exactly n vertices. This function will attempt
+    to repeatedly adjust epsilon to minimize it while keeping the result's 
+    number of sides correct.
+
+    Partially taken from https://stackoverflow.com/a/55339684/5745575.
+    """
+
+    mineps = 0
+    maxeps = cv2.arcLength(contour, True)
+    iterations = 0
+    
+    good = None
+
+    while True:
+        # We're done!
+        if iterations >= iteration_count:
+            # If found this will contain the best result
+            # Otherwise it will be None
+            return good
+
+        epsilon = (mineps + maxeps) / 2
+        approx = cv2.approxPolyDP(contour, epsilon, True)
+
+        # Too many points - epsilon too low 
+        if len(approx) > n:
+            mineps = epsilon
+        # Too few points - epsilon too high
+        elif len(approx) < n:
+            maxeps = epsilon
+        # Good number of points
+        else:
+            # Mark it down 
+            good = approx
+            # Try to reduce the epsilon
+            maxeps = epsilon
+        
+        iterations += 1
+
+
 def get_target(img):
     """
     Find the target from a pre-processed image.
@@ -83,7 +126,11 @@ def get_target(img):
     contours, _ = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # Get the minimum bounding box of each target and filter
     target = filter_targets([(contour, cv2.minAreaRect(contour)) for contour in contours])
-    return target
+    # Simplify its contours
+    if target:
+        simple_contour = simplify_contour(target[0], 8)
+        return (simple_contour, target[1]) if simple_contour is not None else None
+    return None
 
 
 def draw_target(img, target):
