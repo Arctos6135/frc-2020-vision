@@ -44,6 +44,8 @@ To run the Python tests, first `cd python-tests`.
 To run the live vision tests, run `python3 vision_test.py`.
 To run the PNG vision tests, first extract `test_imgs.tar.gz`, and then run `python3 png_vision_test.py`.
 
+When running PNG vision tests, press 'q' to quit, press 'p' to go to the previous image, or press any key to move on to the next image.
+
 ## Thank you to our generous sponsors:
 ### Platinum
 <img alt="TDSB" src="https://upload.wikimedia.org/wikipedia/en/thumb/6/60/Toronto_District_School_Board_Logo.svg/1200px-Toronto_District_School_Board_Logo.svg.png" height="400"/>
