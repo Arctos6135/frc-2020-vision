@@ -9,13 +9,17 @@ CAM_HORIZ_FOCAL_LEN = CAM_WIDTH / 2 / math.tan(math.radians(CAM_HORIZ_FOV / 2))
 CAM_VERT_FOCAL_LEN = CAM_HEIGHT / 2 / math.tan(math.radians(CAM_VERT_FOV / 2))
 
 # The real coordinates of the target's corner points in 3d space
-# https://limelightvision.io/pages/downloads conveniently provides them (2020 Hex Goal Model)
 # Note the order of points and down is positive
+# Start at the top left point and go clockwise
 OBJECT_POINTS = np.array([
     (-19.625, 0, 0),
-    (-9.82, 17, 0),
+    (-17.31560, 0, 0),
+    (-8.65780, 15, 0),
+    (8.65780, 15, 0),
+    (17.31560, 0, 0),
     (19.625, 0, 0),
-    (9.82, 17, 0)
+    (9.8125, 17, 0),
+    (-9.8125, 17, 0)
 ])
 
 # Intrinsic camera matrix
@@ -36,43 +40,43 @@ CAMERA_DIST_COEFFS = np.zeros((4, 1))
 
 def get_corner_points(contour):
     """
-    Get the 4 corner points of the target.
+    Get all corner points of the hexagonal target.
 
-    Returns a tuple of (top_left, bottom_left, top_right, bottom_right).
+    Returns a list of 8 points, starting with the top left and going clockwise.
     """
     # First actually convert to points
     points = [point[0] for point in contour]
-
+    # Find the top left point
+    # This should be the leftmost point
     top_left_idx = 0
     for i in range(1, len(points)):
         if points[i][0] < points[top_left_idx][0]:
             top_left_idx = i
-    top_left = points[top_left_idx]
+    # Find the next and previous points
     n = points[(top_left_idx + 1) % len(points)]
     p = points[top_left_idx - 1]
-    bottom_left = n if n[1] > p[1] else p
-
-    top_right_idx = 0
-    for i in range(1, len(points)):
-        if points[i][0] > points[top_right_idx][0]:
-            top_right_idx = i
-    top_right = points[top_right_idx]
-    n = points[(top_right_idx + 1) % len(points)]
-    p = points[top_right_idx - 1]
-    bottom_right = n if n[1] > p[1] else p
-    return (top_left, bottom_left, top_right, bottom_right)
+    # Get the one with the lower Y value and keep going in that direction
+    if n[1] < p[1]:
+        return [points[(top_left_idx + i) % len(points)] for i in range(len(points))]
+    else:
+        return [points[(top_left_idx - i) % len(points)] for i in range(len(points))]
 
 
-# TODO: Is this correct?
-def rotvec_to_euler(vec):
+def get_target_angles(vec):
     """
-    Converts a rotation vector as outputted by solvePnP to Euler angles.
+    Converts a rotation vector as outputted by solvePnP to (yaw, pitch, roll).
     """
-    mat, jacobian = cv2.Rodrigues(vec)
-    roll = math.degrees(math.atan2(-mat[2][1], mat[2][2]))
-    pitch = math.degrees(math.asin(mat[2][0]))
-    yaw = math.degrees(math.atan2(-mat[1][0], mat[0][0]))
-    return (roll, pitch, yaw)
+    R, jacobian = cv2.Rodrigues(vec)
+    # Roll, pitch and yaw of the target IRL is different from in the math
+    # X axis - left to right
+    # Y axis - top to bottom
+    # Z axis - in to out
+    # Therefore the format we want is actually YXZ
+    # Ask Tyler about the math here
+    yaw = math.atan2(-R[2, 0], R[2, 2])
+    pitch = math.asin(R[2, 1])
+    roll = math.atan2(-R[0, 1], R[1, 1])
+    return (yaw, pitch, roll)
 
 
 def get_target_info(target):
@@ -94,12 +98,11 @@ def draw_target_info(img, rv, tv):
     """
     Draws target info returned by get_target_info.
     """
-    euler = rotvec_to_euler(rv)
-    print(img.shape)
-    cv2.putText(img, f"Yaw: {euler[0]:2f}, Pitch: {euler[1]:2f}, Roll: {euler[2]:2f}",
-        (0, img.shape[0] - 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255))
-    cv2.putText(img, f"Translation: ({tv[0][0]:2f}, {tv[1][0]:2f}, {tv[2][0]:2f})",
-        (0, img.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255))
+    yaw, pitch, roll = [math.degrees(angle) for angle in get_target_angles(rv)]
+    cv2.putText(img, f"Yaw: {yaw:.2f}, Pitch: {pitch:.2f}, Roll: {roll:.2f}",
+                (0, img.shape[0] - 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255))
+    cv2.putText(img, f"Translation: ({tv[0][0]:.2f}, {tv[1][0]:.2f}, {tv[2][0]:.2f})",
+                (0, img.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255))
 
     # Re-project to visualize
     l = 20

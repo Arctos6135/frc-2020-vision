@@ -12,4 +12,6 @@ for path in paths:
 
     process_img(img)
     
-    cv2.waitKey(0)
+    code = cv2.waitKey(0) & 0xFF
+    if code == ord('q'):
+        break
