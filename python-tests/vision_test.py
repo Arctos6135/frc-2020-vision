@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import time
 from get_target import *
+from get_distance import *
 
 def process_img(img):
     """
@@ -14,12 +15,18 @@ def process_img(img):
     target = get_target(out)
     if target is not None:
         print("Target found in image")
-        draw_target(img, target)
+        retval, rv, tv = get_target_info(target)
+        if retval:
+            draw_target_info(img, rv, tv)
+        else:
+            print("solvePnP failed!")
         # Convert the pre-processed image to BGR so the contour can be shown
         out = cv2.cvtColor(out, cv2.COLOR_GRAY2BGR)
-        #draw_target(out, target)
-        for point in target[0]:
-            cv2.circle(out, tuple(point[0]), 5, (0, 255, 0), -1)
+        corners = get_corner_points(target[0])
+        print("Corner points are:")
+        for point in corners:
+            cv2.circle(out, tuple(point), 5, (0, 255, 0), -1)
+            print(point)
     else:
         print("Target not found in image")
 
