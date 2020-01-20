@@ -32,10 +32,10 @@ def preprocess(img):
     # Apply morphological operations
     # Opening: Erosion followed by dilation
     # Used to get rid of noise
-    img = cv2.morphologyEx(img, cv2.MORPH_OPEN, MORPH_KERNEL)
+    #img = cv2.morphologyEx(img, cv2.MORPH_OPEN, MORPH_KERNEL)
     # Closing: Dilation followed by erosion
     # Used to get rid of small holes
-    img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, MORPH_KERNEL)
+    #img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, MORPH_KERNEL)
     return img
 
 
@@ -60,10 +60,7 @@ def filter_targets(targets):
         # Fullness is the percentage of the bounding box filled by the contour
         fullness = area / rect_area
         if FILTER_FULLNESS_LOW <= fullness <= FILTER_FULLNESS_HIGH:
-            print(f"Contour meets fullness requirement: area={area}, rect_area={rect_area}")
             valid_targets.append(((contour, rect), area))
-        else:
-            print(f"Contour does not meet fullness requirement: area={area}, rect_area={rect_area}")
     # If there are multiple left, return the one with the biggest area
     target = max(valid_targets, key=lambda v: v[1], default=None)
     return target[0] if target else None
