@@ -19,4 +19,5 @@ install:
   - rosdep install --from-paths src -i
 
 script:
+  - source /opt/ros/$ROS_DISTRO/setup.bash
   - catkin build
