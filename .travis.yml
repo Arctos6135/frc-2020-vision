@@ -1,0 +1,23 @@
+language: minimal
+
+dist: xenial
+
+env:
+  global:
+    - ROS_DISTRO=kinetic
+
+# Install a basic ROS setup
+before_install:
+  - chmod +x travis_install_ros.sh
+  - ./travis_install_ros.sh
+  - sudo rosdep init
+  - rosdep update
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+
+install:
+  - wstool update -t src
+  - rosdep install --from-paths src -i
+
+script:
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  - catkin build
