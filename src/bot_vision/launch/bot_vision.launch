@@ -1,0 +1,6 @@
+<launch>
+    <!-- Vision node -->
+    <node pkg="bot_vision" type="bot_vision_node" name="vision_node" output="screen" respawn="true">
+
+    </node>
+</launch>

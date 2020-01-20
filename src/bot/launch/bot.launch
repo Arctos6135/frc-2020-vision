@@ -1,4 +1,5 @@
 <launch>
 	<include file="$(find bot)/launch/cameras.launch" />
+	<include file="$(find bot_vision)/launch/bot_vision.launch" />
 </launch>
 
