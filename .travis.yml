@@ -6,6 +6,10 @@ env:
   global:
     - ROS_DISTRO=kinetic
 
+cache:
+  directories:
+    - /opt/ros/kinetic
+
 # Install a basic ROS setup
 before_install:
   - chmod +x travis_install_ros.sh
