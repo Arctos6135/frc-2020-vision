@@ -15,7 +15,7 @@ namespace vision {
         }
     }
 
-    int filter_targets(const std::vector<std::vector<cv::Point>> &contours, double fullness_low, double fullness_high) {
+    int filter_targets(const std::vector<std::vector<cv::Point> > &contours, double fullness_low, double fullness_high) {
         int max_size = -1;
         int max_index = -1;
 
@@ -73,7 +73,7 @@ namespace vision {
 
     bool find_target_contour(const cv::Mat &img, std::vector<cv::Point> &out, double fullness_low, 
             double fullness_high, int simplify_iterations) {
-        std::vector<std::vector<cv::Point>> contours;
+        std::vector<std::vector<cv::Point> > contours;
         cv::findContours(img, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
         int index = filter_targets(contours, fullness_low, fullness_high);
 
