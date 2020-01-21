@@ -6,19 +6,45 @@ Official repository for Team Arctos 6135's vision code in FRC 2020 Infinite Rech
 
 ## Building
 
-This project is powered by ROS. First install ROS from http://wiki.ros.org/ROS/Installation.
+### Installing Dependencies
+
+#### Main Project
+
 This project natively uses ROS Kinetic on Ubuntu Xenial, but any distribution should work.
+This project is powered by ROS. First install ROS from http://wiki.ros.org/ROS/Installation.
 
 1. Source the setup file from `/opt/ros/<distro>/setup.bash`.
-2. Run `wstool update -t src` to clone the necessary packages.
-3. Run `catkin build` to build the project.
+2. Run `wstool update -t src` to clone the necessary packages from source.
+3. Run `rosdep install --from-paths src -i` to install all package dependencies.
+
+#### Python Tests
+
+To install the dependencies for the Python tests, run `pip install -r python-tests/requirements.txt`.
+
+### Building the Project
+
+1. Run `catkin build` to build the project.
 
 ## Running
+
+### Main Project
+
+A USB camera (Microsoft Lifecam HD-3000) should be at `/dev/video0`, with a green LED ring (am-3597) around it.
 
 Again, you must have ROS installed to run this project.
 
 1. Source the local setup file from `devel/setup.bash`.
 2. Run `roslaunch bot bot.launch` to launch the entire robot.
+
+### Python Tests
+
+For live vision tests, a USB camera (Microsoft Lifecam HD-3000) should be at `/dev/video1` (since usually `/dev/video0` is the built-in webcam), with a green LED ring (am-3597) around it.
+
+To run the Python tests, first `cd python-tests`.
+To run the live vision tests, run `python3 vision_test.py`.
+To run the PNG vision tests, first extract `test_imgs.tar.gz`, and then run `python3 png_vision_test.py`.
+
+When running PNG vision tests, press 'q' to quit, press 'p' to go to the previous image, or press any key to move on to the next image.
 
 ## Thank you to our generous sponsors:
 ### Platinum

@@ -1,22 +1,40 @@
+# Catkin build output
 devel/
 logs/
 build/
+
+# Binaries
 bin/
 lib/
 
 *~
 
+# Test images
+*.png
+
+# Python
+__pycache__
+
 # Emacs
 .#*
 
 # Vim
-*.swp
+*.sw*
+
+# VS Code
+.vscode
 
 # Catkin custom files
 CATKIN_IGNORE
 
+# Catkin config
 .catkin_tools/
 
+# NetworkTables package
 src/networktables/
 
+# rosinstall setup scripts
 setup.*
+
+# rosinstall file backup
+.rosinstall.bak
