@@ -1,8 +1,8 @@
 #include <ros/ros.h>
 
-#include "bot_vision/vision.h"
+#include <bot_vision/vision.h>
 #include <dynamic_reconfigure/server.h>
-#include "bot_vision/VisionConfig.h"
+#include <bot_vision/VisionConfig.h>
 
 void configure_callback(bot_vision::VisionConfig &config, uint32_t level) {
     

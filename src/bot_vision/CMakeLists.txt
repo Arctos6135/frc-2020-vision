@@ -140,7 +140,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/bot_vision_node.cpp)
+add_executable(${PROJECT_NAME}_node src/vision.cpp src/bot_vision_node.cpp)
 
 # make sure configure headers are built before any node using them
 add_dependencies(bot_vision_node ${PROJECT_NAME}_gencfg)
