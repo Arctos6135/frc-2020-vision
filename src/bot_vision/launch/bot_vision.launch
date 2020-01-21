@@ -1,6 +1,26 @@
 <launch>
     <!-- Vision node -->
     <node pkg="bot_vision" type="bot_vision_node" name="vision_node" output="screen" respawn="true">
+        <!-- These params can also be configured with dynamic_reconfigure -->
+        <!-- rosrun dynamic_reconfigure dynparam get/set/list -->
+        <!-- Or use the GUI: rosrun rqt_reconfigure rqt_reconfigure -->
+        <!-- Be sure to set ROS_MASTER_URI if running remotely: export ROS_MASTER_URI http://<server_ip>:11311 -->
 
+        <!-- Vision configuration -->
+        <!-- Thresholding values -->
+        <param name="thresh_high_h" value="130" />
+        <param name="thresh_high_s" value="255" />
+        <param name="thresh_high_v" value="255" />
+        <param name="thresh_low_h" value="80" />
+        <param name="thresh_low_s" value="80" />
+        <param name="thresh_low_v" value="80" />
+        <!-- Morphology operations -->
+        <!-- Set this to 0 for no opening/closing -->
+        <param name="morph_kernel_size" value="5" />
+        <!-- Fullness filtering -->
+        <param name="fullness_high" value="0.25" />
+        <param name="fullness_low" value="0.10" />
+        <!-- Iterations to run for simplifying contour -->
+        <param name="simplify_iterations" value="20" />
     </node>
 </launch>
