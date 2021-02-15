@@ -2,7 +2,13 @@
 
 Official repository for Team Arctos 6135's vision code in FRC 2020 Infinite Recharge! Runs on a NVIDIA Jetson TX1 with ROS.
 
-~~We're trying hard to not rely on anyone, but this project wouldn't be possible without [@mincrmatt12](https://github.com/mincrmatt12).~~
+Special thanks for ROS help from [@mincrmatt12](https://github.com/mincrmatt12).
+
+The following images were generated with the Python tests:
+![Target position tracking (Python)](https://user-images.githubusercontent.com/32781310/107910212-f0d79500-6f27-11eb-8368-efb82aa2f47d.png)
+![Target detection (Python)](https://user-images.githubusercontent.com/32781310/107910131-bcfc6f80-6f27-11eb-8e10-57aa3d1b706a.png)
+
+**Unfortunately, because we switched to a Limelight midway through (*not because it's better, but because it's easier to use for future programming members*), the code was never finished. However, the Python tests are fully functional. You can run `png_vision_test.py` to test on the local static images, or `vision_test.py` if you have a real camera and target available.**
 
 ## Building
 
