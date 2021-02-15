@@ -3,6 +3,7 @@ Vision tests using PNG images.
 """
 import cv2
 import numpy as np
+import sys
 from glob import glob
 from vision_test import *
 
@@ -17,23 +18,13 @@ if __name__ == "__main__":
 
         process_img(img)
         
-        code = cv2.waitKey(0)
-        if code == ord('q'):
-            break
-        elif code == ord('p'):
-            i = (i - 1) % len(paths)
-        else:
-            i = (i + 1) % len(paths)
-
-    for path in paths:
-        img = cv2.imread(path)
-
-        process_img(img)
-        
-        code = cv2.waitKey(0)
-        
-
-        print(code)
-        print(chr(code))
-        if code == ord('q'):
-            break
+        while True:
+            code = cv2.waitKey(0)
+            if code == ord('q'):
+                sys.exit(0)
+            elif code == ord('p'):
+                i = (i - 1) % len(paths)
+                break
+            elif code == ord('n') or code == ord(' '):
+                i = (i + 1) % len(paths)
+                break
